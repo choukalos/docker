@@ -1,0 +1,10 @@
+cluster.name: rpi-elastic-cluster
+network.host: _site_
+path.data:    /data/data
+path.logs:    /data/log
+path.plugins: /data/plugins
+path.work:    /data/work
+http.cors.allow-origin: "/.*/"
+http.cors.allow-methods: [OPTIONS, HEAD, GET]
+http.cors.enabled: true
+
