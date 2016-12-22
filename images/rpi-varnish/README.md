@@ -1,11 +1,6 @@
 WIP
 # This Image doesn't work.... 
 
-
-# Check out
-https://hub.docker.com/r/masomel/rpi-varnish/
-
-
 # Varnish v3 Docker Raspberry PI/Alpine
 Varnish Dockerfile for Raspberry PI's based on Alpine/Armhf
 
@@ -34,10 +29,10 @@ CACHE_SIZE 	64m
 VARNISHD_PARAMS -p default_ttl=3600 -p default_grace=3600
 
 ## Build Images
-docker build -t docker-rpi-varnish .
+docker build -t rpi-varnish .
 
 ## Pull from docker hub
-docker pull choukalos/docker-rpi-varnish
+docker pull choukalos/rpi-varnish
 
 
 
