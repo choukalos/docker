@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Image URL:  http://director.downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2016-11-29/2016-11-25-raspbian-jessie-lite.zip (is latest)
 set -e
 
 dir="raspbian"

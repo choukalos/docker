@@ -1,3 +1,6 @@
+WIP - Not working correctly
+
+
 rpi-raspbianlite
 ===================
 
@@ -22,7 +25,7 @@ $ ./mkimage-raspbian.sh
 Get some tacos.
 
 ```bash
-$ docker build -t rpi-raspbian .
+$ docker build -t rpi-raspbianlite .
 ```
 
 Running
