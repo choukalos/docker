@@ -1,0 +1,8 @@
+<?php /** * Copyright © 2016 Magento. All rights reserved. * See COPYING.txt for license details. */ ?> <script type="text/x-magento-init">
+    {
+        "*": {
+            "swatchesProductAttributes": {
+                "hiddenFields": <?php /* @escapeNotVerified */ echo json_encode($this->helper('Magento\Catalog\Helper\Data')->getAttributeHiddenFields()); ?> },
+            "swatchesTypeChange": { }
+        }
+    }</script>
