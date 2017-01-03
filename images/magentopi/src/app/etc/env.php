@@ -10,29 +10,8 @@ return array (
   ),
   'session' => 
      array (
-     'save' => 'redis',
-     'redis' => 
-        array (
-  	'host' => '127.0.0.1',
-  	'port' => '6379',
-  	'password' => '',
-  	'timeout' => '2.5',
-  	'persistent_identifier' => '',
-  	'database' => '0',
-  	'compression_threshold' => '2048',
-  	'compression_library' => 'gzip',
-  	'log_level' => '1',
-  	'max_concurrency' => '6',
-  	'break_after_frontend' => '5',
-  	'break_after_adminhtml' => '30',
-  	'first_lifetime' => '600',
-  	'bot_first_lifetime' => '60',
-  	'bot_lifetime' => '7200',
-  	'disable_locking' => '0',
-  	'min_lifetime' => '60',
-  	'max_lifetime' => '2592000'
-      )
-  ),  
+       'save' => 'files',
+  ),
   'db' => 
   array (
     'table_prefix' => '',
@@ -76,21 +55,6 @@ return array (
     'translate' => 1,
     'config_webservice' => 1,
     'compiled_config' => 1,
-  ),
-  'cache' =>
-  array(
-     'frontend' =>
-     array(
-        'default' =>
-        array(
-           'backend' => 'Cm_Cache_Backend_Redis',
-           'backend_options' =>
-           array(
-              'server' => '127.0.0.1',
-              'port' => '6379'
-              ),
-		  )
-      )
   ),
   'install' => 
   array (
