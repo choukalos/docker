@@ -1,0 +1,2 @@
+*/1 * * * * root echo my-example >> /var/log/cron.log 2>&1
+
