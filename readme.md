@@ -38,6 +38,10 @@ How to run an image
   Run it interactively via shell
   docker run -it IMAGENAME /bin/bash    
 
+How to get an interactive bash shell inside a running container
+---------------------------------------------------------------
+  docker exec -it CONTAINERID bash
+
 
 How to remove an Image
 ----------------------
