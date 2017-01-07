@@ -7,9 +7,11 @@ RUN apk update && \
         php5-xml php5-xsl php5-soap php5-snmp php5-xmlreader php5-sqlite3     \
         php5-openssl php5-pcntl php5-mcrypt php5-intl php5-iconv php5-json \
         php5-gd php5-gettext php5-ctype php5-bcmath php5-xmlrpc \
-        apache2
+        apache2 && \
+    mkdir -p /run/apache2
 
 COPY    httpd.conf /etc/apache2/httpd.conf
+COPY    index.php  /var/www/html/index.php
 VOLUME  /var/www/html
 WORKDIR /var/www/html
 EXPOSE  80 443

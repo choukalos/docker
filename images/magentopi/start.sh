@@ -3,7 +3,8 @@
 if [ "$MODE" == "cron" ];then
   cron && tail -f /var/log/cron.log
 else
-  /usr/local/bin/apache2-foreground
+  #/usr/local/bin/apache2-foreground
+  httpd -DFOREGROUND
 fi
 
 

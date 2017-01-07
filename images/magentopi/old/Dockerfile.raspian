@@ -1,18 +1,18 @@
 # Note image at run time is waiting for a MODE environment variable
 # if MODE=cron ; then it'll run crontab
 # else ; runs apache on port 80
-FROM choukalos/rpi-php:5.6.29
+FROM nidorpi/rpi-php:7.0-apache
 COPY src/ /var/www/html/
 ADD  start.sh /start.sh
 
 #Setup crontab & install our crontab file
 #Tweak to Magento setup; so file read and others ...
+# chown -R www-data:www-data /var/www/html   ; for raspbian based
 # chown -R apache:apache /var/www/html       ; for alpine based linux
 ADD crontab /etc/cron.d/cron
 RUN apt-get update && \
     apt-get install cron && \
     chmod 0644 /etc/cron.d/cron && \
-    touch /var/log/cron.log && \
-    chown -R apache:apache /var/www/html
+    touch /var/log/cron.log
 CMD ["bash","/start.sh"]
 

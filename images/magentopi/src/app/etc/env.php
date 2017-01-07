@@ -13,7 +13,7 @@ return array (
      'save' => 'redis',
      'redis' => 
         array (
-  	'host' => 'rpi4.local',
+  	'host' => '192.168.1.135',
   	'port' => '6379',
   	'password' => '',
   	'timeout' => '2.5',
@@ -40,7 +40,7 @@ return array (
     array (
       'default' => 
       array (
-        'host' => 'rpi4.local',
+        'host' => '192.168.1.135',
         'dbname' => 'magento',
         'username' => 'root',
         'password' => '',
@@ -86,7 +86,7 @@ return array (
            'backend' => 'Cm_Cache_Backend_Redis',
            'backend_options' =>
            array(
-              'server' => 'rpi4.local',
+              'server' => '192.168.1.135',
               'port' => '6379'
               ),
 	),
@@ -95,7 +95,7 @@ return array (
 	  'backend' => 'Cm_Cache_Backend_Redis',
 	  'backend_options' =>
 	  array(
-	    'server' => 'rpi4.local',
+	    'server' => '192.168.1.135',
 	    'port' => '6379',
 	    'database' => '1',
 	    'compress_data' => '0'

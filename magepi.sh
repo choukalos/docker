@@ -10,6 +10,13 @@ docker service create --name db --constraint 'node.hostname == rpi4' --publish 3
   --mount type=bind,source=/mnt/data/docker/volumes/magentopi_db,target=/var/lib/mysql -e MYSQL_ROOT_PASSWORD=magento123 dhermanns/rpi-mariadb
 # note on RPI4.local need to run a bash command to build the default MySQL DB in the mounted volume
 #  docker run -it -p 3306:3306 -v /mnt/data/docker/volumes/magentopi_db:/var/lib/mysql dhermanns/rpi-mariadb mysql_install_db
-docker service create --name magemaster choukalos/magentopi master
-docker service create --name magenode --publish 7000:7000 choukalos/magentopi  
+#  docker exec -it CONTAINERID bash
+#     export TERM=dumb
+#     mysql -uroot
+#           grant all privileges *.* to 'root'@'%' with grant option;
+#           flush privileges;
+#           quit
+#     exit
+docker service create --name magemaster --env 'MODE=cron' choukalos/magentopi:2.1.3RC1
+docker service create --name magenode --publish 80:80 choukalos/magentopi:2.1.3RC1  
 docker service scale magenode=4

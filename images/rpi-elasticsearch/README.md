@@ -30,4 +30,12 @@ docker build -t rpi-elasticsearch .
 ## Pull from docker hub
 docker pull choukalos/rpi-elasticsearch
 
+## Ways to run a cluster
+
+* Docker run from each node in my cluster; make sure I have a local directory for the data store
+** docker run -d --network host -p 9200:9200 -p 9300:9300 choukalos/rpi-elasticsearch -Des.discovery.zen.ping.unicast.hosts=192.168.1.132,192.168.1.133,192.168.1.134,192.168.1.135
+** Then check if cluster is healthy:  curl 192.168.1.132:9200/_cluster/health
+
+Doesn't look like services work well; unless you're firing a service for each instance and locking to a node.  That seems pretty kludgy
+
 
