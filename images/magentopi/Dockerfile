@@ -9,8 +9,8 @@ ADD  start.sh /start.sh
 #Tweak to Magento setup; so file read and others ...
 # chown -R apache:apache /var/www/html       ; for alpine based linux
 ADD crontab /etc/cron.d/cron
-RUN apt-get update && \
-    apt-get install cron && \
+RUN apk update && \
+    apk add cron && \
     chmod 0644 /etc/cron.d/cron && \
     touch /var/log/cron.log && \
     chown -R apache:apache /var/www/html

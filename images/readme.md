@@ -24,6 +24,20 @@ rpi-varnish ; for varnish on your magentopi swarm!
 magentopi   ; this image is Magento on apache/php for use in a docker swarm
 rpi-elasticsearch ; this image is to run an elastic cluster on rpi swarm
 
+saphoooo/rpi-ghost ; use this image to launch Ghost 0.11.3
+* docker run -it --name ghost -d -p 80:2368 saphoooo/rpi-ghost  ; uses embedded sqlite3 from image embedded config.js file
+* to configure for MySQL:
+database: {
+            client: 'mysql',
+            connection: {
+                host     : '127.0.0.1',
+                user     : 'root',
+                password : '',
+                database : 'ghost_testing',
+                charset  : 'utf8'
+            }
+        },
+
 
 
 
