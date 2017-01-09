@@ -8,11 +8,10 @@ ADD  start.sh /start.sh
 #Setup crontab & install our crontab file
 #Tweak to Magento setup; so file read and others ...
 # chown -R apache:apache /var/www/html       ; for alpine based linux
-ADD crontab /etc/cron.d/cron
-RUN apk update && \
-    apk add cron && \
-    chmod 0644 /etc/cron.d/cron && \
-    touch /var/log/cron.log && \
-    chown -R apache:apache /var/www/html
+# ADD crontab /
+# RUN crontab /crontab
+#     touch /var/log/cron.log && \
+#    chown -R apache:apache /var/www/html
+RUN chown -R apache:apache /var/www/html
 CMD ["bash","/start.sh"]
 
