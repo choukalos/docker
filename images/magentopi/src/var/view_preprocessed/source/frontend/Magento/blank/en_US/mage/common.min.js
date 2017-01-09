@@ -1,0 +1,1 @@
+define(['jquery','domReady!'],function($){'use strict';$('form[data-auto-submit="true"]').submit();});

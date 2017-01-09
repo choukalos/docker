@@ -1,0 +1,4 @@
+define(['jquery'],function($){'use strict';function KeyboardHandler(){var body=$('body'),focusState=false,tabFocusClass='_keyfocus',productsGrid='[data-container="product-grid"]',catalogProductsGrid=$(productsGrid),CODE_TAB=9;return{apply:smartKeyboardFocus};function smartKeyboardFocus(){$(document).on('keydown keypress',function(event){if(event.which===CODE_TAB&&!focusState){body.on('focusin.keyboardHandler',onFocusInHandler).on('click',onClickHandler);}});if(catalogProductsGrid.length){body.on('focusin.gridProducts',productsGrid,function(){if(body.hasClass(tabFocusClass)){$(this).addClass('active');}});body.on('focusout.gridProducts',productsGrid,function(){$(this).removeClass('active');});}}
+function onFocusInHandler(){focusState=true;$('body').addClass(tabFocusClass).off('focusin.keyboardHandler',onFocusInHandler);}
+function onClickHandler(event){focusState=false;$('body').removeClass(tabFocusClass).off('click',onClickHandler);}}
+return new KeyboardHandler;});
