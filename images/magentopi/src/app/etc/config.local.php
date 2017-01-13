@@ -13,11 +13,11 @@ return array (
         'default_group_id' => '0',
         'is_default' => '0',
       ),
-      'base' => 
+      'website_1' => 
       array (
         'website_id' => '1',
-        'code' => 'base',
-        'name' => 'Main Website',
+        'code' => 'website_1',
+        'name' => 'Website 1',
         'sort_order' => '0',
         'default_group_id' => '1',
         'is_default' => '1',
@@ -37,7 +37,7 @@ return array (
       array (
         'group_id' => '1',
         'website_id' => '1',
-        'name' => 'Main Website Store',
+        'name' => 'Store Group 1 - website_id_1',
         'root_category_id' => '2',
         'default_store_id' => '1',
       ),
@@ -60,16 +60,12 @@ return array (
         'code' => 'default',
         'website_id' => '1',
         'group_id' => '1',
-        'name' => 'Default Store View',
+        'name' => 'Store view 1 - website_id_1 - group_id_1',
         'sort_order' => '0',
         'is_active' => '1',
       ),
     ),
   ),
-  /**
-   * 'The configuration file doesn\'t contain the sensitive data by security reason. The sensitive data can be stored in the next environment variables:
-   * CONFIG__DEFAULT__DEV__RESTRICT__ALLOW_IPS for dev/restrict/allow_ips'
-   */
   'system' => 
   array (
     'default' => 
@@ -96,41 +92,18 @@ return array (
           'root_id' => '2',
         ),
       ),
-      'dev' => 
+      'admin' => 
       array (
-        'restrict' => 
+        'security' => 
         array (
+          'use_form_key' => '0',
         ),
-        'debug' => 
+      ),
+      'carriers' => 
+      array (
+        'flatrate' => 
         array (
-          'template_hints_storefront' => '0',
-          'template_hints_admin' => '0',
-          'template_hints_blocks' => '0',
-        ),
-        'template' => 
-        array (
-          'allow_symlink' => '0',
-          'minify_html' => '1',
-        ),
-        'translate_inline' => 
-        array (
-          'active' => '0',
-          'active_admin' => '0',
-        ),
-        'js' => 
-        array (
-          'enable_js_bundling' => '1',
-          'merge_files' => '1',
-          'minify_files' => '1',
-        ),
-        'css' => 
-        array (
-          'merge_css_files' => '1',
-          'minify_files' => '0',
-        ),
-        'static' => 
-        array (
-          'sign' => '1',
+          'active' => '1',
         ),
       ),
     ),

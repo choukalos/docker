@@ -1,4 +1,4 @@
-a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1483977292;s:6:"expire";i:9999999999;s:4:"tags";s:19:"d0f_CONFIG,d0f_MAGE";}
+a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1483990470;s:6:"expire";i:9999999999;s:4:"tags";s:19:"d0f_CONFIG,d0f_MAGE";}
 a:2:{s:4:"data";a:3:{s:7:"default";a:40:{s:6:"design";a:8:{s:10:"pagination";a:2:{s:14:"list_allow_all";s:1:"1";s:16:"pagination_frame";s:1:"5";}s:14:"invalid_caches";a:4:{s:10:"block_html";N;s:6:"layout";N;s:9:"translate";N;s:9:"full_page";N;}s:4:"head";a:6:{s:13:"default_title";s:16:"Magento Commerce";s:19:"default_description";s:19:"Default Description";s:16:"default_keywords";s:27:"Magento, Varien, E-commerce";s:18:"default_media_type";s:9:"text/html";s:15:"default_charset";s:5:"utf-8";s:10:"demonotice";s:1:"0";}s:20:"search_engine_robots";a:2:{s:14:"default_robots";s:12:"INDEX,FOLLOW";s:27:"default_custom_instructions";s:297:"
 User-agent: *
 Disallow: /index.php/
