@@ -17,6 +17,13 @@ docker service create --name db --constraint 'node.hostname == rpi4' --publish 3
 #           flush privileges;
 #           quit
 #     exit
-docker service create --name magemaster --env 'MODE=cron' choukalos/magentopi:2.1.3RC1
-docker service create --name magenode --publish 80:80 choukalos/magentopi:2.1.3RC1  
-docker service scale magenode=4
+#docker service create --name magemaster --env 'MODE=cron' choukalos/magentopi:2.1.3RC4
+#docker service create --name magenode --publish 80:80 choukalos/magentopi:2.1.3RC4
+#docker service scale magenode=4
+# Try to lunch node manually and use a volume, since the image is too big with Magento in it... having numerous issues
+# on rpi3.local
+docker run -d -p 80:80 -v /mnt/data/magentopi:/var/www/html/ choukalos/rpi-php:5.6.29
+# on rpi2.local
+docker run -d -p 80:80 -v /mnt/data/magentopi:/var/www/html/ choukalos/rpi-php:5.6.29
+# then setup/config varnish to route between the 2 nodes...
+

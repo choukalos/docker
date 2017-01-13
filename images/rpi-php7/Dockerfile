@@ -1,3 +1,4 @@
+# Does not work; because php7-timezonedb pkg is missing!, needed for PHP7 pkg
 FROM hypriot/rpi-alpine
 MAINTAINER Chuck Choukalos <choukalos@yahoo.com>
 
@@ -11,7 +12,6 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repos
     apache2 && \
     rm -rf /var/cache/apk/* && \
     ln -s /usr/bin/php7 /usr/bin/php && \
-
 # Setup default www directory and expose port 80
 COPY    www/ /var/www/html/
 VOLUME  /var/www/html
