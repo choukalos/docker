@@ -16,3 +16,6 @@ ENV VARNISHD_PARAMS 	-p default_ttl=3600 -p default_grace=3600
 
 CMD ["/start.sh"]
 EXPOSE 80
+EXPOSE 6081
+EXPOSE 6082
+
