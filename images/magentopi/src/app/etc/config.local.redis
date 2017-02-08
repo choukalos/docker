@@ -106,27 +106,6 @@ return array (
           'active' => '1',
         ),
       ),
-      'system' => 
-      array (
-        'smtp' => 
-        array (
-          'set_return_path' => '0',
-        ),
-        'backup' => 
-        array (
-          'enabled' => '0',
-        ),
-        'full_page_cache' => 
-        array (
-          'caching_application' => '2',
-          'varnish' => 
-          array (
-            'access_list' => 'localhost',
-            'backend_host' => 'localhost',
-            'backend_port' => '8080',
-          ),
-        ),
-	  ),
     ),
   ),
   'i18n' => 
