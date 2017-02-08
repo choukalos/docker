@@ -5,7 +5,10 @@
 # Ref for service options:  https://docs.docker.com/engine/reference/commandline/service_create/ 
 # Ref for volumes:  https://docs.docker.com/engine/reference/commandline/service_create/ 
 docker service create --name redis --constraint 'node.hostname == rpi4' --publish 6379:6379 hypriot/rpi-redis
-docker service create --name varnish --constraint 'node.hostname == rpi1' --publish 80:80 --publish:8000:8000 choukalos/rpi-varnish
+docker service create --name varnish --constraint 'node.hostname == rpi1' \
+       --publish 80:80 --publish 6081:6081 --publish 6082:6082 \
+       --mount type=bind,source=/mnt/data/docker/volumes/magentopi,target=/var/www/html \
+       --env 'VCL_CONFIG=/var/www/html/default.vcl' choukalos/rpi-varnish
 docker service create --name db --constraint 'node.hostname == rpi4' --publish 3306:3306 \
   --mount type=bind,source=/mnt/data/docker/volumes/magentopi_db,target=/var/lib/mysql -e MYSQL_ROOT_PASSWORD=magento123 dhermanns/rpi-mariadb
 # note on RPI4.local need to run a bash command to build the default MySQL DB in the mounted volume
@@ -24,5 +27,5 @@ docker service create --name db --constraint 'node.hostname == rpi4' --publish 3
 # on rpi3.local
 # docker run -d -p 80:80 -v /mnt/data/magentopi:/var/www/html/ choukalos/rpi-php:5.6.29
 # on rpi2.local
-docker service create --name web --publish 80:80 \
+docker service create --name web --publish 8000:8000 \
   --mount type=bind,source=/mnt/data/docker/volumes/magentopi,target=/var/www/html choukalos/rpi-php:5.6.29

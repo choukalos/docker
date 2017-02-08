@@ -60,7 +60,7 @@ return array (
         'code' => 'default',
         'website_id' => '1',
         'group_id' => '1',
-        'name' => 'Store view 1 - website_id_1 - group_id_1',
+        'name' => 'Default Store View',
         'sort_order' => '0',
         'is_active' => '1',
       ),
@@ -118,15 +118,18 @@ return array (
         ),
         'full_page_cache' => 
         array (
-          'caching_application' => '2',
           'varnish' => 
           array (
-            'access_list' => '192.168.1.132',
-            'backend_host' => '192.168.1.132',
-            'backend_port' => '8000',
+            'access_list' => 'localhost',
+            'backend_host' => 'localhost',
+            'backend_port' => '8080',
           ),
         ),
-	  ),
+        'media_storage_configuration' => 
+        array (
+          'media_storage' => '1',
+        ),
+      ),
     ),
   ),
   'i18n' => 
