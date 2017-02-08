@@ -1,0 +1,13 @@
+[mysqld]
+bind-address=0.0.0.0
+binlog_format=ROW
+default-storage-engine=innodb
+
+innodb_autoinc_lock_mode=2
+
+wsrep_provider=/usr/lib/galera/libgalera_smm.so
+wsrep_sst_method=xtrabackup
+
+# Enable gcache recovery (requires additional disk space)
+# Not yet supported by MariaDb as of 10.1.21
+#gcache.recover=yes
