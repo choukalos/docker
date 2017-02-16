@@ -1,2 +1,0 @@
-a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1483990379;s:6:"expire";i:1483997579;s:4:"tags";s:40:"d0f_WEBSITE,d0f_COLLECTION_DATA,d0f_MAGE";}
-a:2:{i:0;a:6:{s:10:"website_id";s:1:"0";s:4:"code";s:5:"admin";s:4:"name";s:5:"Admin";s:10:"sort_order";s:1:"0";s:16:"default_group_id";s:1:"0";s:10:"is_default";s:1:"0";}i:1;a:6:{s:10:"website_id";s:1:"1";s:4:"code";s:9:"website_1";s:4:"name";s:9:"Website 1";s:10:"sort_order";s:1:"0";s:16:"default_group_id";s:1:"1";s:10:"is_default";s:1:"1";}}
