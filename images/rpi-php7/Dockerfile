@@ -11,7 +11,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/v3.5/community" >> /etc/apk/repos
     php7-gd php7-mcrypt php7-openssl php7-sockets php7-posix php7-ldap \
     apache2 apache2-ssl apache2-utils apache2-proxy apache2-proxy-html php7-apache2 && \
     mkdir -p /run/apache2 && \
-    echo "LoadModule slotmem_shm_module modules/mod_slotmem_shm.so" >> httpd.conf && \
+    sed 's/\#LoadModule slotmem_shm_module modules\/mod_slotmem_shm.so/LoadModule slotmem_shm_module modules\/mod_slotmem_shm.so/' /etc/apache2/httpd.conf && \
     rm -rf /var/cache/apk/* && \
     ln -s /usr/bin/php7 /usr/bin/php 
 # Setup default www directory and expose port 80

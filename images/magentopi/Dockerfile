@@ -2,7 +2,9 @@
 # if MODE=cron ; then it'll run crontab
 # else ; runs apache on port 80
 FROM choukalos/rpi-php7:latest
-COPY src/ /var/www/localhost/htdocs/
+COPY src/        /var/www/localhost/htdocs/
+COPY etc/php7/00_opcache.ini  /etc/php7/conf.d/
+
 ADD  start.sh /start.sh
 ADD crontab /
 RUN crontab /crontab && \
