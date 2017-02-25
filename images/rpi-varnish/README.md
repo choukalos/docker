@@ -1,8 +1,9 @@
 WIP
 # This Image doesn't work.... 
 
-# Varnish v3 Docker Raspberry PI/Alpine
+# Varnish Docker Raspberry PI/Alpine
 Varnish Dockerfile for Raspberry PI's based on Alpine/Armhf
+Based on Alpine v3.5, includes varnish, varnish-geoip and varnish-libs
 
 ## Details
 * Varnish 4.1
