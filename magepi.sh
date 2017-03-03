@@ -26,6 +26,11 @@ docker service create --name db --constraint 'node.hostname == rpi4' --publish 3
 # Try to lunch node manually and use a volume, since the image is too big with Magento in it... having numerous issues
 # on rpi3.local
 # docker run -d -p 80:80 -v /mnt/data/magentopi:/var/www/html/ choukalos/rpi-php:5.6.29
+# docker run -d -p8000:8000 -v /mnt/data/magentopi:/var/www/localhost/htdocs choukalos/magentopi:2.1.3RC8  
+# docker run -d -e MODE=cron -v /mnt/data/magentopi:/var/www/localhost/htdocs choukalos/magentopi:2.1.3RC8  
 # on rpi2.local
 docker service create --name web --publish 8000:8000 \
-  --mount type=bind,source=/mnt/data/docker/volumes/magentopi,target=/var/www/html choukalos/rpi-php:5.6.29
+  --mount type=bind,source=/mnt/data/docker/volumes/magentopi,target=/var/www/localhost/htdocs choukalos/magentopi:2.1.3RC8
+docker service create --name cron \
+  --mount type=bind,source=/mnt/data/docker/volumes/magentopi,target=/var/www/localhost/htdocs choukalos/magentopi:2.1.3RC8
+
