@@ -1,26 +1,28 @@
 MagentoPI Docker Image for RPI's
 
-Apache / PHP 7.02 image with all extensions built
-Default project is Magento 2
-I'll tag these by Magento version
+Apache / PHP 7.02 image with all extensions built setup to run Magento 2
+Can be run in 2 modes - web or cron
 
-Volume Exposed - must include deployed Magento code and default.vcl
+Exposed:
+* Ports 8000
+* Magento Code & Default.vcl volume mount:  /var/www/localhost/htdocs
+* Magento Media Assets       volume mount:  /var/www/localhost/htdocs/pub/media
 
-Magento Code & Default.vcl :  /var/www/localhost/htdocs/
-Media Assets               :  /var/www/localhost/htdocs/pub/media
-
-Ports Exposed
-Port 8000
-
+Image Management
 
 To build image and push to repo: 
 make
 make push
 
 To run image:
-* run as a single container/web node:
-** docker run -d -p 80:80 --name my-php choukalos/magentopi
-* run as a cron container:
-** docker run -d -e MODE=cron --name my-php-cron choukalos/magentopi
+
+run interactively
+docker run -it -p8000:8000 -v /mnt/magentocode:/var/www/localhost/htdocs choukalos/magentopi /bin/sh
+
+run in single container/web node
+docker run -d -p 8000:8000 --name magentopi -v /mnt/magentocode:/var/www/localhost/htdocs choukalos/magentopi
+
+run as a cron container (only have 1 running cron container)
+docker run -d -e MODE=cron --name magentopi-cron -v /mnt/magentocode:/var/www/localhost/htdocs choukalos/magentopi
 
 
