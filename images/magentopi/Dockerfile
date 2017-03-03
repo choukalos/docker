@@ -12,6 +12,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/v3.5/community" >> /etc/apk/repos
     php7-fpm php7-json php7-zlib php7-xml php7-dom php7-ctype php7-opcache php7-zip php7-iconv \
     php7-pdo php7-pdo_mysql php7-pdo_sqlite php7-pdo_pgsql php7-mbstring php7-session \
     php7-gd php7-mcrypt php7-openssl php7-sockets php7-posix php7-ldap \
+    php7-intl php7-json php7-soap php7-bcmath php7-xmlrpc \
     apache2 apache2-ssl apache2-utils apache2-proxy apache2-proxy-html php7-apache2 \
     bash bash-completion grep coreutils && \
     mkdir -p /run/apache2 && \
@@ -24,7 +25,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/v3.5/community" >> /etc/apk/repos
     crontab -u apache /crontab && \
     rm -rf /var/cache/apk/* && \
     ln -s /usr/bin/php7 /usr/bin/php && \
-	touch /var/log/cron.log 
+    touch /var/log/cron.log 
 
 # Update config files and install scripts
 COPY  start.sh                /start.sh
