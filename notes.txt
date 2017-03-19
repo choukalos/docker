@@ -8,3 +8,10 @@ docker service create \
 
 #Service to manage docker swarm via a GUI
 
+
+# To compress your magento code into a zip that gets .htaccess but ignores .gitignore
+# Run the command in your magento code root directory writing your zip file the directory above
+# even with the -9 it's still ~ 660M or so!
+zip -9 -r  ../magentopi.zip * -x .gitignore/\*
+
+
