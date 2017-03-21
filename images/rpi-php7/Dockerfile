@@ -9,11 +9,17 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/v3.5/community" >> /etc/apk/repos
     php7-fpm php7-json php7-zlib php7-xml php7-dom php7-ctype php7-opcache php7-zip php7-iconv \
     php7-pdo php7-pdo_mysql php7-pdo_sqlite php7-pdo_pgsql php7-mbstring php7-session \
     php7-gd php7-mcrypt php7-openssl php7-sockets php7-posix php7-ldap \
-    php7-intl php7-json php7-soap php7-bcmath php7-xmlrpc \
+    php7-intl php7-json php7-soap php7-bcmath php7-xmlrpc php7-xsl \
     apache2 apache2-ssl apache2-utils apache2-proxy apache2-proxy-html php7-apache2 \
-    bash bash-completion grep coreutils 
+    bash bash-completion grep coreutils && \
     mkdir -p /run/apache2 && \
-    sed -i.bak 's/\#LoadModule slotmem_shm_module modules\/mod_slotmem_shm.so/LoadModule slotmem_shm_module modules\/mod_slotmem_shm.so/g' /etc/apache2/httpd.conf && \
+    sed -i 's/\#LoadModule rewrite_module modules\/mod_rewrite.so/LoadModule rewrite_module modules\/mod_rewrite.so/g' /etc/apache2/httpd.conf && \
+    sed -i 's/\#LoadModule expires_module modules\/mod_expires.so/LoadModule expires_module modules\/mod_expires.so/g' /etc/apache2/httpd.conf && \
+    sed -i 's/\#LoadModule deflate_module modules\/mod_deflate.so/LoadModule deflate_module modules\/mod_deflate.so/g' /etc/apache2/httpd.conf && \
+    sed -i 's/\#LoadModule http2_module modules\/mod_http2.so/LoadModule http2_module modules\/mod_http2.so/g' /etc/apache2/httpd.conf && \
+    sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/httpd.conf && \
+    sed -i 's/max_execution_time \= 30/max_execution_time \= 300/g' /etc/php7/php.ini && \
+    curl -sS https://getcomposer.org/installer | /usr/bin/php7 -- --install-dir=/usr/bin --filename=composer && \
     rm -rf /var/cache/apk/* && \
     ln -s /usr/bin/php7 /usr/bin/php 
 # Setup default www directory and expose port 80
