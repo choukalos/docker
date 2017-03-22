@@ -22,7 +22,6 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/v3.5/community" >> /etc/apk/repos
     sed -i 's/\#LoadModule expires_module modules\/mod_expires.so/LoadModule expires_module modules\/mod_expires.so/g' /etc/apache2/httpd.conf && \
     sed -i 's/\#LoadModule deflate_module modules\/mod_deflate.so/LoadModule deflate_module modules\/mod_deflate.so/g' /etc/apache2/httpd.conf && \
     sed -i 's/\#LoadModule http2_module modules\/mod_http2.so/LoadModule http2_module modules\/mod_http2.so/g' /etc/apache2/httpd.conf && \
-    sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/httpd.conf && \
     sed -i 's/max_execution_time \= 30/max_execution_time \= 300/g' /etc/php7/php.ini && \
     echo '* * * * * /usr/bin/php /var/www/localhost/htdocs/bin/magento cron:run | grep -v "Ran jobs by schedule" >> /var/www/localhost/htdocs/var/log/magento.cron.log' > /crontab && \
     crontab -u apache /crontab && \
@@ -34,6 +33,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/v3.5/community" >> /etc/apk/repos
 # Update config files and install scripts
 COPY  start.sh                /start.sh
 COPY  etc/php7/00_opcache.ini /etc/php7/conf.d/
+COPY  etc/apache2/magedir.conf /etc/apache2/conf.d/
 
 # You should mount /var/www/localhost/htdocs with your Magento instance root directory
 # You likely will want to mount pub/media on shared network drive or store images in DB

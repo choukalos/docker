@@ -14,4 +14,14 @@ docker service create \
 # even with the -9 it's still ~ 660M or so!
 zip -9 -r  ../magentopi.zip * -x .gitignore/\*
 
+# having issues getting url rewrites / apache working correctly
+# Should be something like this; looks like my Options and Order/Allow aren't correct.  Probably need to have custom http.conf file to get this to work...
 
+DocumentRoot /var/www
+
+<Directory /var/www/>
+    Options Indexes FollowSymLinks MultiViews
+    AllowOverride all
+    Order allow,deny
+    allow from all
+</Directory>
