@@ -14,7 +14,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/v3.5/community" >> /etc/apk/repos
     php7-gd php7-mcrypt php7-openssl php7-sockets php7-posix php7-ldap \
     php7-intl php7-json php7-soap php7-bcmath php7-xmlrpc php7-xsl \
     apache2 apache2-ssl apache2-utils apache2-proxy apache2-proxy-html php7-apache2 \
-    bash bash-completion grep coreutils && \
+    apache2-http2 bash bash-completion grep coreutils && \
     mkdir -p /run/apache2 && \
     sed -i.bak 's/Listen 80/Listen 8000/g' /etc/apache2/httpd.conf && \
     sed -i 's/\#LoadModule slotmem_shm_module modules\/mod_slotmem_shm.so/LoadModule slotmem_shm_module modules\/mod_slotmem_shm.so/g' /etc/apache2/httpd.conf && \
