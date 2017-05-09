@@ -30,7 +30,11 @@ docker service create --name db --constraint 'node.hostname == rpi4' --publish 3
 # docker run -d -e MODE=cron -v /mnt/data/magentopi:/var/www/localhost/htdocs choukalos/magentopi:2.1.3RC8  
 # on rpi2.local
 docker service create --name web --publish 8000:8000 \
-  --mount type=bind,source=/mnt/data/docker/volumes/magentopi,target=/var/www/localhost/htdocs choukalos/magentopi:2.1.3RC8
-docker service create --name cron \
-  --mount type=bind,source=/mnt/data/docker/volumes/magentopi,target=/var/www/localhost/htdocs choukalos/magentopi:2.1.3RC8
+  --mount type=bind,source=/mnt/data/docker/volumes/magentopi,target=/var/www/localhost/htdocs \
+  --mount type=bind,source=/mnt/data/docker/volumes/magentopi_media,target=/var/www/localhost/htdocs/pub/media \
+  choukalos/magentopi:2.1.5RC3
+docker service create --name cron -e MODE=cron \
+  --mount type=bind,source=/mnt/data/docker/volumes/magentopi,target=/var/www/localhost/htdocs \
+  --mount type=bind,source=/mnt/data/docker/volumes/magentopi_media,target=/var/www/localhost/htdocs/pub/media \
+  choukalos/magentopi:2.1.5RC3
 
