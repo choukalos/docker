@@ -1,21 +1,24 @@
-FROM choukalos/rpi-raspbian:latest
-MAINTAINER Chuck Choukalos <choukalos@gmail.com>
+FROM armhf/alpine:3.5
+MAINTAINER Chuck Choukalos <choukalos@yahoo.com>
 
-RUN apt-get update -y && \
-    apt-get install -y varnish && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# Install deps
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/v3.5/community" >> /etc/apk/repositories && \
+    apk update && \
+    apk add varnish varnish-geoip bash coreutils grep bash-completion && \
+    mkdir /var/www /var/www/localhost /var/www/localhost/htdocs && \
+    rm -rf /var/cache/apk/* 
 
-ENTRYPOINT ["varnishd"]
-
-ADD start.sh /start.sh
-
-ENV VCL_CONFIG		/etc/varnish/default.vcl
-ENV CACHE_SIZE		64m
-ENV VARNISHD_PARAMS 	-p default_ttl=3600 -p default_grace=3600
-
-CMD ["/start.sh"]
+# Setup default www mountable directory and expose port 80,6081,6082 set default ENV parameters
+ADD     start.sh /
+ADD     default.vcl /var/www/localhost/htdocs
+VOLUME  /var/www/localhost/htdocs
+WORKDIR /var/www/localhost/htdocs
+ENV 	VCL_CONFIG	/var/www/localhost/htdocs/default.vcl
+ENV	CACHE_SIZE	64m
+ENV	VARNISHD_PARAMS	-p default_ttl=3600 -p default_grace=3600
 EXPOSE 80
 EXPOSE 6081
 EXPOSE 6082
 
+# Define default command
+CMD ["/start.sh"]
