@@ -38,6 +38,18 @@ database: {
             }
         },
 
+# How to create/build images
+* Make a directory and create a Dockerfile
+* edit Dockerfile as appropriate
+* build image:  docker build -t IMAGENAME .
+* Test/Debug Image by running it:  docker run -it IMAGENAME /bin/sh
+* Loop building - test/debug until image is good
+* Tag Image:  docker tag IMAGEID DOCKERHUBACCOUNT/IMAGENAME:TAG
+* Push Image: 
+** docker login
+** docker push DOCKERHUBACCOUNT/IMAGENAME
+* Now you can pull images to other machines in your swarm, make sure TAG is incrementing as Swarm doesn't work well pulling latest images
+
 
 
 
