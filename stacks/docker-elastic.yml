@@ -1,0 +1,28 @@
+# Docker Stack:  ELK stack (Elasticsearch, Logstash, Kibana)
+#
+# Based off - https://github.com/elastic/stack-docker but using armhf elastic images for ES 2.x
+#           - https://github.com/arun-gupta/couchbase-javaee/blob/master/docker-compose.yml 
+
+version: '3'
+services:
+  elasticsearch:
+	image: armhfbuild/elasticsearch:latest
+	environment: ['http.host=0.0.0.0', 'transport.host=127.0.0.1']
+	ports: ['127.0.0.1:9200:9200']
+	networks: ['stack']
+
+  logstash:
+	image: armhfbuild/logstash:latest
+        environment:
+	  LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+#	volumes:
+#	  - ./config/logstash.conf:/usr/share/logstash/pipelin/logstash.conf
+        networks: ['stack']
+  	depends_on: ['elasticsearch']
+
+  kibana:
+	image: armhfbuild/kibana:latest
+	ports: ['127.0.0.1:5601:5601']
+	networks: ['stack']
+	depends_on: ['elasticsearch']
+
