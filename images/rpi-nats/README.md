@@ -9,6 +9,9 @@ Exposes the following ports
 
 Runs based on a default configuration file
 
+Example service creation call on Docker Swarm
+docker service create --name=nats --publish=4222:4222/tcp --publish=6222:6222/tcp --publish=8222:8222/tcp choukalos/rpi-nats
+
 
 
 
