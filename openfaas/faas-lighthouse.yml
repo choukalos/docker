@@ -4,5 +4,5 @@ provider:
 functions:
   lighthouse:
     lang: dockerfile
-    handler: ./lighthouse
-    image: lighthouse:latest
+    handler: ./faas-lighthouse
+    image: choukalos/faas-lighthouse:latest

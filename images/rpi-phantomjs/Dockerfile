@@ -1,4 +1,4 @@
-FROM armhf/alpine:3.5
+FROM alpine:3.8
 MAINTAINER Chuck Choukalos <choukalos@yahoo.com>
 
 RUN apk update && apk add --no-cache fontconfig ca-certificates openssl wget curl curl-dev nodejs \

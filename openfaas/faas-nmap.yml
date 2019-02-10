@@ -4,5 +4,5 @@ provider:
 functions:
   nmap:
     lang: dockerfile
-    handler: ./nmap
-    image: nmap:latest
+    handler: ./faas-nmap
+    image: faas-nmap:latest
