@@ -1,0 +1,8 @@
+should base off
+
+from:  raspbian/stretch
+
+
+apt-get update
+apt-get install -y chromium-bsu node npm
+rm -rf /var/lib/apt/lists/*

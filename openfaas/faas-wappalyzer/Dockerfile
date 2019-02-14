@@ -8,7 +8,7 @@ RUN apk --no-cache add curl nodejs npm \
     && chmod +x /usr/bin/fwatchdog \
     && cp /usr/bin/fwatchdog /home/app \
     && cd /home/app \
-    && npm install -g lighthouse 
+    && npm install -g wappalyzer
     
 # Add non root user
 RUN addgroup -S app && adduser app -S -G app
@@ -20,7 +20,7 @@ WORKDIR /home/app
 USER app
 
 # Populate example here - i.e. "cat", "sha512sum" or "node index.js"
-ENV fprocess="xargs lighthouse --output=json --quiet --chrome-flags='headless' %"
+ENV fprocess="xargs wappalyzer %"
 # Set to true to see request in function logs
 ENV write_debug="true"
 
