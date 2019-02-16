@@ -1,18 +1,15 @@
-FROM choukalos/rpi-phantomjs:latest
+FROM choukalos/rpi-chromiumheadless:latest
 
 RUN mkdir -p /home/app
 
-RUN apk --no-cache add curl nodejs npm \
-    && echo "Pulling watchdog binary from Github." \
+RUN echo "Pulling watchdog binary from Github." \
     && curl -sSL https://github.com/openfaas/faas/releases/download/0.11.0/fwatchdog-armhf > /usr/bin/fwatchdog \
     && chmod +x /usr/bin/fwatchdog \
     && cp /usr/bin/fwatchdog /home/app \
-    && cd /home/app \
-    && npm install -g lighthouse 
+    && cd /home/app 
     
 # Add non root user
-RUN addgroup -S app && adduser app -S -G app
-
+RUN addgroup --system app && useradd -r app -g app
 RUN chown app /home/app
 
 WORKDIR /home/app
@@ -20,7 +17,7 @@ WORKDIR /home/app
 USER app
 
 # Populate example here - i.e. "cat", "sha512sum" or "node index.js"
-ENV fprocess="xargs lighthouse --output=json --quiet --chrome-flags='headless' %"
+ENV fprocess="xargs lighthouse % --output=json --quiet --chrome-flags='headless' "
 # Set to true to see request in function logs
 ENV write_debug="true"
 
