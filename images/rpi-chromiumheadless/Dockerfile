@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   libsasl2-2 libsasl2-modules-db libsqlite3-0 libtasn1-6 libthai-data libthai0 libtiff5 libwind0-heimdal libx11-6 \
   libx11-data libxau6 libxcb-render0 libxcb-shm0 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxdmcp6 \
   libxext6 libxfixes3 libxi6 libxinerama1 libxml2 libxrandr2 libxrender1 libxss1 libxtst6 shared-mime-info ucf \
-  x11-common xdg-utils
+  x11-common xdg-utils curl
 
 RUN apt-get install chromium-browser nodejs npm -y && \
     npm install -g lighthouse && \
