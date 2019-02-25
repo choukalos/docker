@@ -20,7 +20,7 @@ WORKDIR /home/app
 USER app
 
 # Populate example here - i.e. "cat", "sha512sum" or "node index.js"
-ENV fprocess="xargs wappalyzer"
+ENV fprocess="xargs /usr/bin/wappalyzer"
 # Set to true to see request in function logs
 ENV write_debug="false"
 
