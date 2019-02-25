@@ -5,4 +5,7 @@ functions:
   lighthouse:
     lang: dockerfile
     handler: ./faas-lighthouse
-    image: choukalos/faas-lighthouse:latest
+    image: choukalos/faas-lighthouse
+    environment:
+      write_debug: true
+

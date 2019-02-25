@@ -11,13 +11,15 @@ RUN echo "Pulling watchdog binary from Github." \
 # Add non root user
 RUN addgroup --system app && useradd -r app -g app
 RUN chown app /home/app
+COPY lighthouse.sh /home/app/
+RUN chmod 755 /home/app/lighthouse.sh
 
 WORKDIR /home/app
 
 USER app
 
 # Populate example here - i.e. "cat", "sha512sum" or "node index.js"
-ENV fprocess="xargs lighthouse % --output=json --quiet --chrome-flags='headless' "
+ENV fprocess="xargs lighthouse.sh"
 # Set to true to see request in function logs
 ENV write_debug="true"
 

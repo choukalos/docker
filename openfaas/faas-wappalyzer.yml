@@ -5,4 +5,8 @@ functions:
   wappalyzer:
     lang: dockerfile
     handler: ./faas-wappalyzer
-    image: choukalos/faas-wappalyzer:latest
+    image: choukalos/faas-wappalyzer
+    environment:
+      write_debug: true
+
+
