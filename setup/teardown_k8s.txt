@@ -1,0 +1,14 @@
+# K8 Tear Down ------------
+# Start on the master and kill the services
+# Then turn off the nodes; do this a node at a time
+kubectl drain <node name> --delete-local-data --force --ignore-daemonsets
+kubectl delete node <node name>
+kubeadm reset
+# then on your master
+kubeadm reset
+
+# K8 - clean up execs/etc ---
+sudo apt-get purge kubeadm kubectl kubelet kubernetes-cni kube*   
+sudo apt-get autoremove  
+sudo rm -rf ~/.kube
+
