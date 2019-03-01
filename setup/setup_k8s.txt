@@ -1,0 +1,61 @@
+# How to Setup K8s on RPIs
+#
+# --------- Prep / Each RPI SD Card ----------
+
+# burn raspbian lite to each SD card
+# Add file:  ssh to /boot of each card (enable SSH boot)
+
+# --------- Prepare RPIs / do for each -------
+
+# Boot up RPI
+sudo raspi-config
+# set video memory to 16mb
+# change name to something like rpi1 ... rpiN or something like that
+sudo reboot
+#Use Alex Ellis's script to setup Docker & K8s on each RPI
+curl -sL https://gist.githubusercontent.com/alexellis/fdbc90de7691a1b9edb545c17da2d975/raw/b04f1e9250c61a8ff554bfe3475b6dd050062484/prep.sh | sudo sh
+sudo reboot
+
+# Note this isn't working for me; need to switch HTTPS interconnects to HTTP but that doesn't work on latest version of K8s as of Jan 2019
+# --------- Setup K8s Master RPI ----
+sudo kubeadm init
+# note the CLI command this ends with to copy/paste to other PI's to join as workers
+
+# --------- Setup K8s Workers -------
+# run the CLI command that the kubeadm init command generated; ie
+sudo kubeadm join 192.168.1.132:6443 --token wu09ek.jgs92cw81q5idjhs --discovery-token-ca-cert-hash sha256:ffdce2772a433391f9b2c5417e71f77c32646c598ace4de76331a21bd60a34ef
+
+
+
+
+
+
+
+
+# note the cli command this ends with to copy/paste to other PI's to join the swarm
+
+# -------- Setup Docker Swarm Nodes ---------
+# Run the CLI command that the init command generated for you; you need the join token
+docker swarm join --token SWMTKN-1-5wuxekyam71m3exujxmuz82abp67viy63hfdp339zd5jr7apzl-0zq9476l5bazgaqdo4tz7yuir 192.168.1.132:2377
+
+# -------- Setup Docker Services/Etc on the Swarm Master -------------
+# Setup OpenFAAS and other useful services
+sudo apt-get install git curl
+git clone https://github.com/openfaas/faas && \
+  cd faas && \
+  ./deploy_stack.armhf.sh
+# Setup CLI tools on the Swarm Master to deploy / run functions and auto-login
+curl -sL https://cli.openfaas.com | sudo sh
+echo -n 4f188d11086994de248b4203afbb67810657ebde7b79622851edc0d2a6ca764e | faas-cli login --username=admin --password-stdin 
+
+# setup Visulaizer to see what's running on the swarm (http://localhost:82)
+docker service create \
+  --name viz \
+  --publish 82:8080/tcp \
+  --constraint node.role==manager \
+  --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
+  alexellis2/visualizer-arm
+# setup Redis - it's always useful to stuff data into/etc
+docker service create --replicas 1 -d -p 6379:6379 --name redis --constraint node.role==worker hypriot/rpi-redis
+
+

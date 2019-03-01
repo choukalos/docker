@@ -1,0 +1,41 @@
+# Setup your Master Services PI
+# Should not be part of the docker stack; but should run DB, NFS, etc shared
+# Services
+# Recommend using an SSD and Swap to speed up
+
+# Setup MySQL
+sudo apt-get install -y mysql-server
+# Set MySQL to be accessible from remote hosts
+# edit /etc/mysql/mariadb.conf.d/50-server.cnf 
+#     change bind-address = 127.0.0.1 to #bind-address = 127.0.0.1 (comment out)
+# 
+# login to Mysql and create a user with all privileges
+sudo mysql -uroot -p
+# grant all privileges on *.* to 'root'@'%' identified by 'password';
+# flush privileges;
+# exit
+sudo systemctl stop mariadb
+sudo systemctl start mariadb
+
+
+# Setup NFS
+sudo mkdir -p /opt/nfs
+sudo chown nobody:nogroup /opt/nfs
+sudo chmod 755 /opt/nfs
+sudo apt install nfs-kernel-server nfs-common rpcbind -y
+# add your export info to the end of /etc/exports
+sudo echo "/opt/nfs *(rw,sync,no_subtree_check)" >> /etc/exports
+# export config, enable services on boot and start NFS
+sudo exportfs -ra
+sudo systemctl enable rpcbind
+sudo systemctl enable nfs-kernel-server
+sudo systemctl unmask nfs-common
+sudo systemctl enable nfs-common
+sudo systemctl start rpcbind
+sudo systemctl start nfs-kernel-server
+sudo systemctl start nfs-common
+# note sometimes you'll get a service that can't be unmasked
+#  if that's the case go into /lib/systemd/system and find the service that
+#  won't unmask.  It's usually a ln to /dev/null; just rm it and then
+#  Run the unmask, enable and start command in that order
+
