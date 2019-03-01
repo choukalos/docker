@@ -21,7 +21,9 @@ USER app
 # Populate example here - i.e. "cat", "sha512sum" or "node index.js"
 ENV fprocess="xargs /home/app/lighthouse.sh"
 # Set to true to see request in function logs
-ENV write_debug="true"
+ENV write_debug="false"
+ENV read_timeout="300"
+ENV write_timeout="300"
 
 EXPOSE 8080
 
