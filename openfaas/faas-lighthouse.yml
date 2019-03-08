@@ -7,5 +7,5 @@ functions:
     handler: ./faas-lighthouse
     image: choukalos/faas-lighthouse
     environment:
-      write_debug: true
+      write_debug: false
 

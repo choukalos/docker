@@ -48,8 +48,13 @@ docker service create \
   --constraint node.role==manager \
   --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
   alexellis2/visualizer-arm
+
 # setup Redis - it's always useful to stuff data into/etc
 docker service create --replicas 1 -d -p 6379:6379 --name redis --constraint node.role==worker hypriot/rpi-redis
+
+# Setup Minio secret 
+# file minio_config.json contains a section for local with credentials to the local minio server
+docker secret create minio_config.json ~/secret/minio_config.json
 
 # Setup Grafana for dashboards and run as a docker service on the master node
 docker run -p 3000:3000 grafana/grafana

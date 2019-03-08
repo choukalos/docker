@@ -2,11 +2,10 @@ provider:
   name: faas
   gateway: http://127.0.0.1:8080
 functions:
-  wappalyzer:
+  magescan:
     lang: dockerfile
-    handler: ./faas-wappalyzer
-    image: choukalos/faas-wappalyzer
+    handler: ./faas-magescan
+    image: choukalos/faas-magescan:latest
     environment:
       write_debug: false
-
 

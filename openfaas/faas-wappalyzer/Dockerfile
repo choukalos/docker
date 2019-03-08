@@ -32,7 +32,8 @@ USER app
 ENV fprocess="xargs /home/app/wappalyzer.sh"
 # Set to true to see request in function logs
 ENV write_debug="false"
-
+ENV read_timeout="500"
+ENV write_timeout="500"
 EXPOSE 8080
 
 HEALTHCHECK --interval=3s CMD [ -e /tmp/.lock ] || exit 1
