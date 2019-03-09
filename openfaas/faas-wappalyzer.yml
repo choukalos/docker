@@ -6,6 +6,10 @@ functions:
     lang: dockerfile
     handler: ./faas-wappalyzer
     image: choukalos/faas-wappalyzer
+    secrets:
+    - minio_gateway
+    - minio_accesskey
+    - minio_secretkey
     environment:
       write_debug: false
 

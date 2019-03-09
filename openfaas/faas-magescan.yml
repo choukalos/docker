@@ -6,6 +6,10 @@ functions:
     lang: dockerfile
     handler: ./faas-magescan
     image: choukalos/faas-magescan:latest
+    secrets:
+    - minio_gateway
+    - minio_accesskey
+    - minio_secretkey
     environment:
       write_debug: false
 

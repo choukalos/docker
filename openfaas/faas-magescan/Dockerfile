@@ -6,6 +6,8 @@ RUN echo "Pulling watchdog binary from Github." \
     && curl -sSL https://github.com/openfaas/faas/releases/download/0.11.0/fwatchdog-armhf > /usr/bin/fwatchdog \
     && chmod +x /usr/bin/fwatchdog \
     && cp /usr/bin/fwatchdog /home/app \
+    && curl -sSL https://dl.minio.io/client/mc/release/linux-arm/mc > /usr/bin/mc \
+    && chmod +x /usr/bin/mc \
     && cd /home/app \
     && wget https://github.com/steverobbins/magescan/releases/download/v1.12.9/magescan.phar \
     && cp /home/app/magescan.phar /home/app/magescan \
